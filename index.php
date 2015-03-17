@@ -24,7 +24,7 @@
                     $nb = 24;
                     echo '<h2 id="secAdultes">Les ' . $nb . ' dernières BD Adultes</h2>';
                     insert_last_albums($nb, 'Adultes');
-
+                    
                     echo '<h2 id="secAdos">Les ' . $nb . ' dernières BD Ados</h2>';
                     insert_last_albums($nb, 'Ado');
 
