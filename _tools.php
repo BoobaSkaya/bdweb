@@ -1,16 +1,6 @@
 <?php
 
-require 'require/require.php';
-function db_connect(){
-    
-    
-    $dblink = mysql_connect('0.0.0.0', 'ce.palays', 'palays31');
-    mysql_select_db('ce.palays', $dblink);
-}
-
-function db_close(){
-    mysql_close();
-}
+require 'model/require.php';
 
 /**
  * Insert the last $nb album of the given type
@@ -18,30 +8,19 @@ function db_close(){
  */
 function insert_last_albums($nb, $type) {
     global $IMG_ROOT; // retrieve IMG_ROOT as global variable
-    db_connect();
-    
-    // on crée la requête SQL 
-    $sql = "SELECT distinct a.idserie, s.titre, a.dateachat, a.idalbum, a.couverture, a.num, a.titre"
-           ." FROM albums a, series s "
-           ." WHERE a.idserie = s.idserie AND a.perso1 = '$type' "
-           ." ORDER BY a.dateachat desc, s.titre, a.num"
-           . " LIMIT 0, $nb";
-    // 
-    $req = mysql_query($sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+    $album = new Album();
+    $albums = $album->get_last_albums($nb, $type);
     echo '<div class="row">';
     // 
-    while ($data = mysql_fetch_assoc($req)) {
+    foreach ($albums as $data) {
         echo '<div class="col-md-2">'
         .'<div class="thumbnail">'
         . '<a href="serie.php?idserie=' . $data['idserie'] . '">'
         . '<img src="'.$IMG_ROOT.'/Couvertures/thumbs/m_' . $data['couverture'] . '" alt="' . $data['titre'] . '"></a>'
-        
-                .'</div>'
-                . '</div>';
+        .'</div>'
+        .'</div>';
     }
     echo '</div>';
-    // on ferme la connexion à mysql 
-    db_close();
 }
 
 

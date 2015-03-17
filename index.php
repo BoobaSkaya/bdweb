@@ -57,6 +57,9 @@ require_once "_tools.php";
                 <!--middle-->
                 <div class="col-md-9">
                     <?php
+                    require_once "model/Album.php";
+                    $album = new Album();
+                    
                     $nb = 24;
                     echo '<h2 id="secAdultes">Les ' . $nb . ' dernières BD Adultes</h2>';
                     insert_last_albums($nb, 'Adultes');
@@ -72,8 +75,6 @@ require_once "_tools.php";
                 </div><!--/right-->
             </div><!--/row-->
         </div><!--/container-->
-
-
 
         <!-- script references -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
