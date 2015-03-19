@@ -32,8 +32,15 @@ require_once "_tools.php";
                         <li>
                             <a href="http://ce.palays.free.fr/BD/Web/moteur.php?coll=albums">Rechercher</a>
                         </li>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Album/Auteur/Serie">
+                            </div>
+                            <button type="submit" class="btn btn-default">Chercher</button>
+                        </form>
                     </ul>
                 </nav>
+                
             </div>
         </nav>
 
