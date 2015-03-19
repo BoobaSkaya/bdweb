@@ -29,7 +29,7 @@
                         <?php
                         foreach($albums as $album){
                             ?>
-                            <div class="row">
+                            <div class="row" id="T<?=$album['num']?>">
                                 <div class="col-md-3" id="leftAlbum<?=$album['num']?>">
                                     <img class="img-thumbnail" src="<?=$IMG_ROOT?>/Couvertures/thumbs/m_<?=$album['couverture']?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
                                 </div>
