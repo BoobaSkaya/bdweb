@@ -11,8 +11,6 @@ class Serie extends Model
     }
     
     public function get_serie($idserie) {
-        
-        global $IMG_ROOT; // retrieve IMG_ROOT as global variable
         $sth = $this->db->prepare("SELECT *"
                ." FROM series"
                ." WHERE idserie = :idserie "
@@ -21,6 +19,18 @@ class Serie extends Model
 
        $sth->execute();
        $result = $sth->fetch(PDO::FETCH_ASSOC);
+       return $result;
+    }
+    
+    public function get_albums_of_serie($idserie) {
+        $sth = $this->db->prepare("SELECT *"
+               ." FROM albums"
+               ." WHERE idserie = :idserie ORDER BY num"
+               );
+       $sth->bindParam("idserie", $idserie, PDO::PARAM_INT);
+
+       $sth->execute();
+       $result = $sth->fetchAll(PDO::FETCH_ASSOC);
        return $result;
     }
 }

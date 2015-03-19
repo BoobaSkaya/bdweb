@@ -7,9 +7,6 @@
                         <ul class="nav nav-stacked" id="sidebar">
                             <li><a href="#secAdultes">BD Adultes</a></li>
                             <li><a href="#secAdos">BD Ados</a></li>
-                            <li><a href="#secVO">BD VO</a></li>
-                            <li><a href="#sec1">Section 3</a></li>
-                            <li><a href="#sec2">Section 4</a></li>
                         </ul>
                     </div>
                     
@@ -28,8 +25,8 @@
                     echo '<h2 id="secAdos">Les ' . $nb . ' dernières BD Ados</h2>';
                     insert_last_albums($nb, 'Ado');
 
-                    echo '<h2 id="secVO">Les ' . $nb . ' dernières BD VO</h2>';
-                    insert_last_albums($nb, 'VO');
+                    //echo '<h2 id="secVO">Les ' . $nb . ' dernières BD VO</h2>';
+                    //insert_last_albums($nb, 'VO');
                     ?> 
                     
                     <hr>

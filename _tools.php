@@ -33,33 +33,30 @@ function insert_serie($idserie, $idalbum) {
     $serieO = new Serie();
     $data = $serieO->get_serie($idserie);
     echo '<div class="row">';
-    
-        echo '<div class="col-md-3" id="leftSerie">'
-        . '<a href="serie.php?idserie=' . $data['idserie'] . '">';
-        if($data['planche'] == ''){
-            echo '<img class="img-thumbnail" src="'.$IMG_ROOT.'/Planches/Encours.jpg" alt="Image en cours"/>';
-        }else{
-            echo '<img class="img-thumbnail" src="'.$IMG_ROOT.'/Planches/thumbs/m_' . $data['planche'] . '" alt="' . $data['titre'] . '">';
-        }
-        echo  '</a>'
+    echo '<div class="col-md-3" id="leftSerie">'
+    . '<a href="serie.php?idserie=' . $data['idserie'] . '">';
+    if($data['planche'] == ''){
+        echo '<img class="img-thumbnail" src="'.$IMG_ROOT.'/Planches/Encours.jpg" alt="Image en cours"/>';
+    }else{
+        echo '<img class="img-thumbnail" src="'.$IMG_ROOT.'/Planches/thumbs/m_' . $data['planche'] . '" alt="' . $data['titre'] . '">';
+    }
+    echo  '</a>'
         . '</div>';
-        echo '<div class="col-md-9" id="rightSerie">'
+    echo '<div class="col-md-9" id="rightSerie">'
         . '<strong class="text-info">'.utf8_encode($data['titre']).'</strong><br/>'
         . '<span class="label label-default">'.utf8_encode($data['style']).'</span><br/>';
-        if ($data['encours'] == 0) {
-            echo '<span class="label label-info"   ><span class="glyphicon glyphicon-check"></span>  Série terminée</span><br/>';
-        } else if ($data['encours'] == 1){
-            echo '<span class="label label-warning"><span class="glyphicon glyphicon-edit" ></span>  Série en cours</span><br/>';
-        }else if ($data['encours'] == 2){
-            echo '<span class="label label-info"   ><span class="glyphicon glyphicon-check"></span>  ONE-SHOT</span><br/>';
-        }
-        echo '<small>'.utf8_encode($data['commentaire']).'</small>';
-        echo '</div>';
-    
-    
+    if ($data['encours'] == 0) {
+        echo '<span class="label label-info"   ><span class="glyphicon glyphicon-check"></span>  Série terminée</span><br/>';
+    } else if ($data['encours'] == 1){
+        echo '<span class="label label-warning"><span class="glyphicon glyphicon-edit" ></span>  Série en cours</span><br/>';
+    }else if ($data['encours'] == 2){
+        echo '<span class="label label-info"   ><span class="glyphicon glyphicon-check"></span>  ONE-SHOT</span><br/>';
+    }
+    echo '<small>'.utf8_encode($data['commentaire']).'</small>';
+    echo '</div>';
     echo '</div>';
 }
- 
+
 function oldinsert_serie($idserie, $idalbum) {
     // on crée la requête SQL pour récupérer la série
     //idserie	titre	style	commentaire	planche	internet	encours

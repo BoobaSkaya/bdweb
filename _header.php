@@ -22,7 +22,7 @@ require_once "_tools.php";
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="banner">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="/BD2/Web/boot.php" class="navbar-brand">MEDIATHEQUE BD</a>
+                    <a href="/index.php" class="navbar-brand">MEDIATHEQUE BD</a>
                 </div>
                 <nav class="collapse navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav">
