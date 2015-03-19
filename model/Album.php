@@ -12,7 +12,6 @@ class Album extends Model
     
     public function get_last_albums($nb, $type) {
         global $IMG_ROOT; // retrieve IMG_ROOT as global variable
-        echo "type is ".$type." and nb is ".$nb;
         /*$sth = $this->db->prepare("SELECT distinct a.idserie, s.titre, a.dateachat, a.idalbum, a.couverture, a.num, a.titre"
                ." FROM albums a, series s "
                ." WHERE a.idserie = s.idserie AND a.perso1 = :type "
