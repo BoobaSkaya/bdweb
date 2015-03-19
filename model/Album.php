@@ -23,7 +23,6 @@ class Album extends Model
                ." WHERE a.idserie = s.idserie AND a.perso1 = :type "
                ." ORDER BY a.dateachat desc, s.titre, a.num"
                . " LIMIT 0, :nb");
-               echo "coucou";
        $sth->bindParam("nb", $nb, PDO::PARAM_INT);
        $sth->bindParam("type", $type);
        $sth->execute();
