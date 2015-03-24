@@ -29,7 +29,7 @@
                             ?>
                             <div class="row" id="T<?=$album['num']?>">
                                 <div class="col-md-3" id="leftAlbum<?=$album['num']?>">
-                                    <img class="img-thumbnail" src="<?=$IMG_ROOT?>/Couvertures/thumbs/m_<?=$album['couverture']?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
+                                    <img class="img-thumbnail" src="<?=get_thumbnail("Couvertures", $album['couverture'])?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
                                 </div>
                                 <div class="col-md-9" id="rightAlbum<?=$album['num']?>">
                                     <strong class="text-info">T<?=$album['num']?> <?=utf8_encode($album['titre'])?></strong><br/>

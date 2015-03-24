@@ -57,46 +57,30 @@ function insert_serie($idserie, $idalbum) {
     echo '</div>';
 }
 
-function oldinsert_serie($idserie, $idalbum) {
-    // on crée la requête SQL pour récupérer la série
-    //idserie	titre	style	commentaire	planche	internet	encours
-    $sql = "SELECT s.idserie, s.titre, s.style, s.commentaire, s.planche, s.internet, s.encours"
-           ." FROM series s "
-           ." WHERE s.idserie = $idserie "
-           . " LIMIT 1";
-    // 
-    $req = mysql_query($sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
-    echo '<div class="row">';
-    $numResults = mysql_num_rows($req);
-    // 
-    if ($numResults >= 1) {
-        $data = mysql_fetch_assoc($req);
-        echo '<div class="col-md-3" id="leftSerie">'
-        . '<a href="serie.php?idserie=' . $data['idserie'] . '">';
-        if($data['planche'] == ''){
-            echo '<img class="img-thumbnail" src="'.$IMG_ROOT.'/Planches/Encours.jpg" alt="Image en cours"/>';
-        }else{
-            echo '<img class="img-thumbnail" src="'.$IMG_ROOT.'/Planches/thumbs/m_' . $data['planche'] . '" alt="' . $data['titre'] . '">';
-        }
-        echo  '</a>'
-        . '</div>';
-        echo '<div class="col-md-9" id="rightSerie">'
-        . '<strong class="text-info">'.$data['titre'].'</strong><br/>'
-        . '<span class="label label-default">'.$data['style'].'</span><br/>';
-        if ($data['encours'] == 0) {
-            echo '<span class="label label-info"   ><span class="glyphicon glyphicon-check"></span>  Série terminée</span><br/>';
-        } else if ($data['encours'] == 1){
-            echo '<span class="label label-warning"><span class="glyphicon glyphicon-edit" ></span>  Série en cours</span><br/>';
-        }else if ($data['encours'] == 2){
-            echo '<span class="label label-info"   ><span class="glyphicon glyphicon-check"></span>  ONE-SHOT</span><br/>';
-        }
-        echo '<small>'.utf8_encode($data['commentaire']).'</small>';
-        echo '</div>';
-    }else{
-        die('Erreur, too many series returned!<br>' . $sql . '<br>');
+function get_thumbnail($folder, $image){
+    global $IMG_LOCAL_ROOT;
+    global $IMG_ROOT;
+    
+    //Create thumbnail folder if it not exist
+    //$thumbfolder = "$folder/thumbs";
+    $thumbfolder = "$IMG_LOCAL_ROOT/$folder/thumbs";
+    if (!file_exists($thumbfolder)) {
+          @mkdir($thumbfolder, 0777, true);
     }
-    echo '</div>';
-    // on ferme la connexion à mysql 
-
+    $w_filename = "$thumbfolder/m_$image";
+    if (!file_exists($w_filename)) { 
+        $width = 107;
+        $height = 145;
+        $im = imagecreatefromjpeg("$IMG_ROOT/$folder/$image");
+        if (function_exists('imagecreatetruecolor')) {
+            $dst_img = imagecreatetruecolor($width, $height);
+        } else {
+            $dst_img = imagecreate($width, $height);
+        }   
+        imagecopyresampled($dst_img,$im,0,0,0,0,$width,$height,imagesx($im),imagesy($im));
+        ImageJPEG($dst_img, $w_filename, 75); // 75% quality
+    }
+    return $w_filename;
 }
+
 ?>
