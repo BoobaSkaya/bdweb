@@ -17,16 +17,17 @@
                     <?php
                     require_once "model/Album.php";
                     $album = new Album();
+                    require_once "model/Settings.php";
+                    $settings = new Settings();
                     
-                    $nb = 24;
+                    $nb = $settings->get_adulte_new_nb();
                     echo '<h2 id="secAdultes">Les ' . $nb . ' dernières BD Adultes</h2>';
                     insert_last_albums($nb, 'Adultes');
                     
+                    $nb = $settings->get_ado_new_nb();
                     echo '<h2 id="secAdos">Les ' . $nb . ' dernières BD Ados</h2>';
                     insert_last_albums($nb, 'Ado');
 
-                    //echo '<h2 id="secVO">Les ' . $nb . ' dernières BD VO</h2>';
-                    //insert_last_albums($nb, 'VO');
                     ?> 
                     
                     <hr>
