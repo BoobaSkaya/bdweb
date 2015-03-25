@@ -1,10 +1,26 @@
 <?php require("_header.php"); ?>
+
+            <style>
+            .zoomed{
+            	position: absolute;
+            	width:0px;
+            	-webkit-transition:width 0.2s linear 0s;
+            	transition:width 0.2s linear 0s;
+            	z-index:10;
+            }
+            .zoomable:hover + .zoomed{
+            	width:300px;
+            }
+            
+            </style>
+
             <div class="row">
                 <!--left-->
                 <div class="col-md-3" id="leftCol">
-                    <ul class="nav nav-stacked" id="sidebar">
+                    <ul class="nav nav-stacked toto" id="sidebar">
                         <?php
                         require_once "model/Serie.php";
+                       
                         $series = new Serie();
                         $albums = $series->get_albums_of_serie($_GET['idserie']);
                         foreach($albums as $album){
@@ -25,11 +41,13 @@
                     <hr>
                     <div class="row">
                         <?php
+                        global $IMG_ROOT;
                         foreach($albums as $album){
                             ?>
                             <div class="row" id="T<?=$album['num']?>">
                                 <div class="col-md-3" id="leftAlbum<?=$album['num']?>">
-                                    <img class="img-thumbnail" src="<?=get_thumbnail("Couvertures", $album['couverture'])?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
+                                    <img class="img-thumbnail zoomable" src="<?=get_thumbnail("Couvertures", $album['couverture'])?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
+                                    <img class="zoomed" src="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
                                 </div>
                                 <div class="col-md-9" id="rightAlbum<?=$album['num']?>">
                                     <strong class="text-info">T<?=$album['num']?> <?=utf8_encode($album['titre'])?></strong><br/>
