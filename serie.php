@@ -37,8 +37,10 @@
                             ?>
                             <div class="row" id="T<?=$album['num']?>">
                                 <div class="col-md-3" id="leftAlbum<?=$album['num']?>">
-                                    <img class="img-thumbnail zoomable" src="<?=get_thumbnail("Couvertures", $album['couverture'])?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
-                                    <img class="zoomed" src="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
+                                    <a target="_blank" href="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" title="Ouvrir en pleine page dans un nouvel onglet">
+                                        <img class="img-thumbnail zoomable" src="<?=get_thumbnail("Couvertures", $album['couverture'])?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
+                                        <img class="zoomed" src="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
+                                    </a>
                                 </div>
                                 <div class="col-md-9" id="rightAlbum<?=$album['num']?>">
                                     <strong class="text-info">T<?=$album['num']?> <?=utf8_encode($album['titre'])?></strong><br/>
