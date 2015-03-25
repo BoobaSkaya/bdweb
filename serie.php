@@ -1,16 +1,7 @@
 <?php require("_header.php"); ?>
 
             <style>
-            .zoomed{
-            	position: absolute;
-            	width:0px;
-            	-webkit-transition:width 0.2s linear 0s;
-            	transition:width 0.2s linear 0s;
-            	z-index:10;
-            }
-            .zoomable:hover + .zoomed{
-            	width:300px;
-            }
+            
             
             </style>
 

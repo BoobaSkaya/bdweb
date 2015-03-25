@@ -16,7 +16,7 @@ function insert_last_albums($nb, $type) {
         echo '<div class="col-md-2">'
         .'<div class="thumbnail">'
         . '<a href="serie.php?idserie=' . $data['idserie'] . '">'
-        . '<img src="'.get_thumbnail("Couvertures", $data['couverture']). '" alt="' . $data['titre'] . '"></a>'
+        . '<img class="zoomable" src="'.get_thumbnail("Couvertures", $data['couverture']). '" alt="' . $data['titre'] . '">'
         .'</div>'
         .'</div>';
     }
@@ -38,7 +38,8 @@ function insert_serie($idserie, $idalbum) {
     if($data['planche'] == ''){
         echo '<img class="img-thumbnail" src="'.$IMG_ROOT.'/Planches/Encours.jpg" alt="Image en cours"/>';
     }else{
-        echo '<img class="img-thumbnail" src="'.get_thumbnail("Planches", $data['planche']). '" alt="' . $data['titre'] . '">';
+        echo '<img class="img-thumbnail zoomable" src="'.get_thumbnail("Planches", $data['planche']). '" alt="' . $data['titre'] . '">';
+        echo '<img class="zoomed" src="'.$IMG_ROOT.'/Planches/'.$data['planche']. '" alt="' . $data['titre'] . '">';
     }
     echo  '</a>'
         . '</div>';

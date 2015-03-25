@@ -15,7 +15,24 @@ require_once "_tools.php";
         <![endif]-->
         <link href="css/styles.css" rel="stylesheet">     
         <style>
-            body { padding-top: 50px; }
+            body { 
+                padding-top: 50px; 
+                /*A padding at bottom to let last images zoom properly*/
+                padding-bottom: 200px; 
+                
+            }
+            /*A class to put on image that is the zoomed version of the sibling zoomable*/
+            .zoomed{
+            	position: absolute;
+            	width:0px;
+            	-webkit-transition:width 0.2s linear 0s;
+            	transition:width 0.2s linear 0s;
+            	z-index:10;
+            }
+            /*A class to put on image that can be zoomed*/
+            .zoomable:hover + .zoomed{
+            	width:300px;
+            }
         </style>
     </head>
     <body>
