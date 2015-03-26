@@ -1,7 +1,7 @@
 <?php require("_header.php"); ?>
 <?php 
   require_once("model/Settings.php");
-  require_once("model/require.php")
+  require_once("model/require.php");
   global $ADMIN_PASSWORD;
   $settings = new Settings();
   //Handling previous request
