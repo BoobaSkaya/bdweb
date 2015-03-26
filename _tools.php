@@ -17,6 +17,7 @@ function insert_last_albums($nb, $type) {
         .'<div class="thumbnail">'
         . '<a href="serie.php?idserie=' . $data['idserie'] . '">'
         . '<img class="zoomable" src="'.get_thumbnail("Couvertures", $data['couverture']). '" alt="' . $data['titre'] . '">'
+        .'</a>'
         .'</div>'
         .'</div>';
     }
