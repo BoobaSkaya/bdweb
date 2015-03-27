@@ -1,10 +1,4 @@
 <?php require("_header.php"); ?>
-
-            <style>
-            
-            
-            </style>
-
             <div class="row">
                 <!--left-->
                 <div class="col-md-3" id="leftCol">
@@ -61,6 +55,18 @@
                                         Collection: <?=utf8_encode($album['collection'])?><br/>
                                     <?php }?>
                                     Pages: <?=utf8_encode($album['nbpages'])?><br/>
+                                    <?php 
+                                    if(date('Y', strtotime($album['dateachat'])) == 2999){
+                                        ?>
+                                        <div class="alert alert-danger" role="alert">En cours d'achat.</div><br/>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        Date d'achat: <?=date('Y', strtotime($album['dateachat']))?><br/>
+                                        <?php
+                                    }
+                                        ?>
+                                    
                                     <div class="row pull-right">
                                         <small>
                                             <a href="http://www.senscritique.com/recherche?query=<?=utf8_encode($album['titre'])?>" alt="chercher l'oeuvre sur senscritique.">
