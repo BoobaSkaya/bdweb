@@ -7,21 +7,36 @@ require 'model/require.php';
  * type among Ado/Adultes/VO
  */
 function insert_last_albums($nb, $type) {
-    global $IMG_ROOT; // retrieve IMG_ROOT as global variable
     $album = new Album();
     $albums = $album->get_last_albums($nb, $type);
     echo '<div class="row">';
     // 
     foreach ($albums as $data) {
-        echo '<div class="col-md-2">'
+        insert_mini_album($data);
+    }
+    echo '</div>';
+}
+
+function insert_next_albums() {
+    $album = new Album();
+    $albums = $album->get_next_albums();
+    echo '<div class="row">';
+    // 
+    foreach ($albums as $data) {
+        insert_mini_album($data);
+    }
+    echo '</div>';
+}
+
+
+function insert_mini_album($data){
+    echo '<div class="col-md-2">'
         .'<div class="thumbnail">'
         . '<a href="serie.php?idserie=' . $data['idserie'] . '">'
         . '<img class="zoomable" src="'.get_thumbnail("Couvertures", $data['couverture']). '" alt="' . $data['titre'] . '">'
         .'</a>'
         .'</div>'
         .'</div>';
-    }
-    echo '</div>';
 }
 
 

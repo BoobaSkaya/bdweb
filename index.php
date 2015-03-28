@@ -7,6 +7,7 @@
                         <ul class="nav nav-stacked" id="sidebar">
                             <li><a href="#secAdultes">BD Adultes</a></li>
                             <li><a href="#secAdos">BD Ados</a></li>
+                            <li><a href="#nextBuy">Prochainement</a></li>
                         </ul>
                     </div>
                     
@@ -27,7 +28,9 @@
                     $nb = $settings->get_ado_new_nb();
                     echo '<h2 id="secAdos">Les ' . $nb . ' dernières BD Ados</h2>';
                     insert_last_albums($nb, 'Ado');
-
+                    
+                    echo '<h2 id="nextBuy">Les prochaines sorties</h2>';
+                    insert_next_albums();
                     ?> 
                     
                     <hr>
