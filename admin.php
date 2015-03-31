@@ -31,12 +31,12 @@
 <div class="row">
     <form method="post" action="admin.php">
       <div class="form-group">
-        <label for="ado_new_nb">Nombre de nouveautés Ado</label>
-        <input type="number" class="form-control" id="ado_new_nb" name="ado_new_nb" value="<?=$settings->get_ado_new_nb() ?>">
-      </div>
-      <div class="form-group">
         <label for="adulte_new_nb">Nombre de nouveautés Adulte</label>
         <input type="number" class="form-control" id="adulte_new_nb" name="adulte_new_nb" value="<?=$settings->get_adulte_new_nb() ?>">
+      </div>
+      <div class="form-group">
+        <label for="ado_new_nb">Nombre de nouveautés Ado</label>
+        <input type="number" class="form-control" id="ado_new_nb" name="ado_new_nb" value="<?=$settings->get_ado_new_nb() ?>">
       </div>
       <div class="form-group">
         <label for="inputPassword">Password</label>
