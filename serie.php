@@ -29,63 +29,72 @@
                         global $IMG_ROOT;
                         foreach($albums as $album){
                             ?>
-                            <div class="row" id="T<?=$album['num']?>">
-                                <div class="col-md-3" id="leftAlbum<?=$album['num']?>">
-                                    <a target="_blank" href="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" title="Ouvrir en pleine page dans un nouvel onglet">
-                                        <img class="img-thumbnail zoomable" src="<?=get_thumbnail("Couvertures", $album['couverture'])?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
-                                        <img class="zoomed" src="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
-                                    </a>
-                                </div>
-                                <div class="col-md-9" id="rightAlbum<?=$album['num']?>">
-                                    <strong class="text-info">T<?=$album['num']?> <?=utf8_encode($album['titre'])?></strong><br/>
-                                    <span class="label label-info"   ><span class="glyphicon glyphicon-modal-window"></span>
-                                    <?php
-                                        $format = $album['format'];
-                                        if ( $format == 0) {       echo 'NORMAL';
-                                        } else if ($format == 1){  echo 'GRAND';
-                                        } else if ($format == 2){  echo "A l'Italienne";
-                                        } else if ($format == 3){  echo 'Autre';
-                                        }
-                                    ?>
-                                    </span><br/>
-                                    ISBN: <i>
-                                        <a href="http://www.books-by-isbn.com/cgi-bin/isbn-lookup.pl?isbn=<?=utf8_encode($album['reference'])?>" alt="chercher via ISBN"><?=utf8_encode($album['reference'])?></a></i><br/>
-                                    Éditeur: <?=utf8_encode($album['editeur'])?><br/>
-                                    <?php if( $album['collection'] != "") { ?>
-                                        Collection: <?=utf8_encode($album['collection'])?><br/>
-                                    <?php }?>
-                                    Pages: <?=utf8_encode($album['nbpages'])?><br/>
-                                    <?php 
+                            
+                                <?php 
                                     if(date('Y', strtotime($album['dateachat'])) == 2999){
-                                        ?>
-                                        <div class="alert alert-danger" role="alert">En cours d'achat.</div><br/>
-                                        <?php
+                                        echo '<div class="row alert alert-danger" id="T'.$album['num'].'">';
+                                            echo '<div class="row">';
+                                            echo '<p class="text-center"><small>Bientôt disponible!</small></p>';
+                                            echo '</div>';
                                     }else{
-                                        ?>
-                                        Date d'achat: <?=date('Y', strtotime($album['dateachat']))?><br/>
-                                        <?php
+                                        echo '<div class="row" id="T'.$album['num'].'">';
                                     }
+                                ?>
+                                <div class=row>
+                                    <div class="col-md-3" id="leftAlbum<?=$album['num']?>">
+                                        <a target="_blank" href="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" title="Ouvrir en pleine page dans un nouvel onglet">
+                                            <img class="img-thumbnail zoomable" src="<?=get_thumbnail("Couvertures", $album['couverture'])?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
+                                            <img class="zoomed" src="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-9" id="rightAlbum<?=$album['num']?>">
+                                        
+                                        <strong class="text-info">T<?=$album['num']?> <?=utf8_encode($album['titre'])?>
+                                       
+                                        </strong><br/>
+                                        <span class="label label-info"   ><span class="glyphicon glyphicon-modal-window"></span>
+                                        <?php
+                                            $format = $album['format'];
+                                            if ( $format == 0) {       echo 'NORMAL';
+                                            } else if ($format == 1){  echo 'GRAND';
+                                            } else if ($format == 2){  echo "A l'Italienne";
+                                            } else if ($format == 3){  echo 'Autre';
+                                            }
                                         ?>
-                                    
-                                    <div class="row pull-right">
-                                        <small>
-                                            <a href="http://www.senscritique.com/recherche?query=<?=utf8_encode($album['titre'])?>" alt="chercher l'oeuvre sur senscritique.">
-                                                <span class="glyphicon glyphicon-bookmark"></span>SC
-                                            </a>
-                                        </small>
-                                        I 
-                                        <small>
-                                            <a href="https://fr.wikipedia.org/w/index.php?search=<?=utf8_encode($album['titre'])?>" alt="chercher l'oeuvre sur wikipedia.">
-                                                <img src="https://honready.hon.com/pc/PublishingImages/wikipedia-icon-small.png" alt="wikipedia icon"/>
-                                                Wi
-                                            </a>
-                                        </small>
+                                        </span><br/>
+                                        ISBN: <i>
+                                            <a href="http://www.books-by-isbn.com/cgi-bin/isbn-lookup.pl?isbn=<?=utf8_encode($album['reference'])?>" alt="chercher via ISBN"><?=utf8_encode($album['reference'])?></a></i><br/>
+                                        Éditeur: <?=utf8_encode($album['editeur'])?><br/>
+                                        <?php if( $album['collection'] != "") { ?>
+                                            Collection: <?=utf8_encode($album['collection'])?><br/>
+                                        <?php }?>
+                                        Pages: <?=utf8_encode($album['nbpages'])?><br/>
+                                        <?php 
+                                        if(date('Y', strtotime($album['dateachat'])) != 2999){
+                                           ?>
+                                            Date d'achat: <?=date('Y', strtotime($album['dateachat']))?><br/>
+                                            <?php
+                                        }
+                                            ?>
+                                        <div class="row pull-right">
+                                            <small>
+                                                <a href="http://www.senscritique.com/recherche?query=<?=utf8_encode($album['titre'])?>" alt="chercher l'oeuvre sur senscritique.">
+                                                    <span class="glyphicon glyphicon-bookmark"></span>SC
+                                                </a>
+                                            </small>
+                                            I 
+                                            <small>
+                                                <a href="https://fr.wikipedia.org/w/index.php?search=<?=utf8_encode($album['titre'])?>" alt="chercher l'oeuvre sur wikipedia.">
+                                                    <img src="https://honready.hon.com/pc/PublishingImages/wikipedia-icon-small.png" alt="wikipedia icon"/>
+                                                    Wi
+                                                </a>
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                                <hr/>
-                            </div>
+                            </div><!--Div closing the album's row div-->
                         <?php
-                        }
+                        }//foreach album
                         ?>
                     </div>
                 </div><!--/right-->
