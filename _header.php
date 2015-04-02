@@ -47,7 +47,7 @@ require_once "_tools.php";
                             <a href="http://ce.palays.free.fr/BD/Web/index.php">L'ancien site</a>
                         </li>
                         <li>
-                            <a href="http://ce.palays.free.fr/BD/Web/moteur.php?coll=albums">Rechercher</a>
+                            <a href="date.php">Par date</a>
                         </li>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">

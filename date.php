@@ -3,18 +3,38 @@
   require_once('model/Album.php');
   $ref = new Album();
   
+  $current_page = 1;
   if(array_key_exists('page', $_GET)){
     $current_page = intval($_GET['page']);  
-  }else{
-    $current_page = 1;
+  }
+  $from = '2010-01-01';
+  if(array_key_exists('from_date', $_GET)){
+    $from = $_GET['from_date'];
+  }
+  $to   = '2011-02-01';
+  if(array_key_exists('to_date', $_GET)){
+    $to = $_GET['to_date'];
   }
   
-  $from = '2010-01-01';
-  $to   = '2011-02-01';
   $page_nb = $ref->get_pages_nb($from, $to);
 
   
   ?>
+  <div class="row">
+    <form class="form-inline" method="get" action="date.php">
+      <div class="form-group">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <label for="fromDate">From</label>
+        <input type="date" class="form-control" name="from_date" id="fromDate" value="<?=$from?>">
+      </div>
+      <div class="form-group">
+        <label for="toDate">To</label>
+        <input type="date" class="form-control" name="to_date" id="toDate" value="<?=$to?>">
+      </div>
+      <input type="hidden" name="page" value="<?=$current_page?>"/>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
 <div class="row">
 <nav class>
   <ul class="pagination">
@@ -27,7 +47,7 @@
     for ($i = 1; $i <= $page_nb; $i++) {
         $li_class = "";
         if($i == $current_page) $li_class = "active";
-        echo '<li class="'.$li_class.'"><a href="date.php?page='.$i.'">'.$i.'</a></li>';
+        echo '<li class="'.$li_class.'"><a href="date.php?page='.$i.'&from_date='.$from.'&to_date='.$to.'">'.$i.'</a></li>';
     }
     ?>
     <li>
@@ -39,6 +59,9 @@
 </nav>
 </div>
 <div class="row">
+
+
+
 <?php
 $albums    = $ref->get_albums($from, $to, $current_page-1);
 
