@@ -39,10 +39,27 @@ $series = new Serie();
 </style>
 <!--left column contains the serie list-->
 <div class="col-md-3" id="leftCol">
+    <?php
+        //extract the filter to process
+        $filter = "";
+        if(array_key_exists('filter', $_GET)){
+            $filter = $_GET['filter'];
+        }
+        $all_class = "";
+        $adultes_class = "";
+        $ados_class    = "";
+        if($filter == "") {
+            $all_class = "active";
+        }else if($filter == "Adultes") {
+            $adultes_class = "active";
+        }else if($filter == "Ado"){
+            $ados_class = "active";
+        }
+    ?>
     <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#">Adultes</a></li>
-      <li role="presentation"><a href="#">Ados</a></li>
-      <li role="presentation"><a href="#">Nouveautés</a></li>
+      <li role="presentation" class="<?= $all_class     ?>"><a href="serie.php?idserie=<?= $_GET['idserie']?>"               >Tout</a></li>
+      <li role="presentation" class="<?= $adultes_class ?>"><a href="serie.php?idserie=<?= $_GET['idserie']?>&filter=Adultes">Adultes</a></li>
+      <li role="presentation" class="<?= $ados_class    ?>"><a href="serie.php?idserie=<?= $_GET['idserie']?>&filter=Ado">Ados</a></li>
     </ul>
     <div class="pagination pagination-sm small">
       <a href="#A">A</a>
@@ -76,8 +93,7 @@ $series = new Serie();
         <?php
         require_once "model/Serie.php";
         $series = new Serie();
-        $all_series = $series->get_all();
-        
+        $all_series = $series->get_all($filter);
         $first_letter_previous = "Z";
          foreach($all_series as $serie){
             //Get first letter of serie
@@ -92,7 +108,7 @@ $series = new Serie();
             }
                 
         ?>
-            <li class="small"><a href="serie.php?idserie=<?=$serie['idserie']?>">
+            <li class="small"><a href="serie.php?idserie=<?=$serie['idserie']?>&filter=<?=$filter?>">
                 <?= utf8_encode(substr($serie['serietitre'], 0, 30)) ?>
                 </a><font color="gray">- [<?=$serie['COUNT(*)']?>]</font></li>
         <?php 
