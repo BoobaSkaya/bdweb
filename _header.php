@@ -18,7 +18,7 @@ require_once "_tools.php";
             body { 
                 padding-top: 50px; 
                 /*A padding at bottom to let last images zoom properly*/
-                padding-bottom: 200px; 
+                padding-bottom: 300px; 
                 
             }
             /*A class to put on image that is the zoomed version of the sibling zoomable*/

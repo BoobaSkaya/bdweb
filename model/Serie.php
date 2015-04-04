@@ -10,8 +10,20 @@ class Serie extends Model
         parent::__construct('series');
     }
     
+    public function get_all(){
+        $sth = $this->db->prepare("SELECT  a.idserie, a.titre, s.idserie, s.titre AS serietitre, COUNT(*)"
+               ." FROM series s, albums a"
+               ." WHERE a.idserie = s.idserie"
+               ." GROUP BY a.idserie"
+               ." ORDER BY serietitre"
+               );
+       $sth->execute();
+       $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+       return $result;
+    }
+    
     public function get_serie($idserie) {
-        $sth = $this->db->prepare("SELECT *"
+       $sth = $this->db->prepare("SELECT *"
                ." FROM series"
                ." WHERE idserie = :idserie "
                );
