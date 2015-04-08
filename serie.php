@@ -12,7 +12,7 @@ $series = new Serie();
     top: 55px;
     bottom: 0px;
     left: 0;
-    width: 25%;
+    width: 24%;
     overflow-y: scroll; 
   }
   
@@ -22,9 +22,10 @@ $series = new Serie();
     top: 55px;
     bottom: 0px;
     padding-bottom: 300px; 
+    padding-right:20px;
     right: 0;
     overflow-y: scroll;
-    width: 70%;
+    width: 74%;
   }
 }
 #leftCol {
@@ -38,7 +39,9 @@ $series = new Serie();
 }
 </style>
 <!--left column contains the serie list-->
-<div class="col-md-3" id="leftCol">
+<?php 
+// The list take soooooo space that we have to make it invisible on small devices.
+function insert_list(){?>
     <?php
         //extract the filter to process
         $filter = "";
@@ -115,6 +118,16 @@ $series = new Serie();
         }
         ?>
     </ul>
+<?php
+}
+?>
+
+<div class="col-md-3 hidden-xs" id="leftCol">
+    <?php
+        //make list invisible on small devices on left column
+        //but set is visible as right column ... see end of file
+        insert_list();
+    ?>
 </div><!--/left-->
 
 <!--middle-->
@@ -148,7 +161,9 @@ $series = new Serie();
                             <img class="zoomed" src="<?="$IMG_ROOT/Couvertures/".$album['couverture']?>" alt="La couverture de <?=utf8_encode($album['titre'])?>"/>
                         </a>
                     </div>
-                    <div class="col-md-9" id="rightAlbum<?=$album['num']?>">
+                    <!-- Use 8 column span, because the righ slider takes some little space.
+                    let it 1 cell wide space available-->
+                    <div class="col-md-8" id="rightAlbum<?=$album['num']?>">
                         
                         <strong class="text-info">T<?=$album['num']?> <?=utf8_encode($album['titre'])?>
                        
@@ -199,5 +214,12 @@ $series = new Serie();
         ?>
     </div>
 </div><!--/right-->
+
+<div class="col-md-3 visible-xs-block" id="othercol">
+    <?php
+        //The list will be on the right on small devices like smartphones
+        insert_list();
+    ?>
+</div><!--/left-->
 
 <?php require("_footer.php"); ?>
