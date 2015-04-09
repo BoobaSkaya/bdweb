@@ -64,6 +64,7 @@ function insert_list(){?>
       <li role="presentation" class="<?= $adultes_class ?>"><a href="serie.php?idserie=<?= $_GET['idserie']?>&filter=Adultes">Adultes</a></li>
       <li role="presentation" class="<?= $ados_class    ?>"><a href="serie.php?idserie=<?= $_GET['idserie']?>&filter=Ado">Ados</a></li>
     </ul>
+    <small>
     <div class="pagination pagination-sm small">
       <a href="#A">A</a>
       <a href="#B">B</a>
@@ -92,6 +93,7 @@ function insert_list(){?>
       <a href="#Y">Y</a>
       <a href="#Z">Z</a>
     </div>
+    </small>
     <ul class="" id="sidebar" style="list-style: none;">
         <?php
         require_once "model/Serie.php";
@@ -105,14 +107,14 @@ function insert_list(){?>
                 //new letter is coming
                 $id = 'id="'.$first_letter.'"';
                 $first_letter_previous = $first_letter;
-                echo '<h4 id="'.$first_letter.'">'.$first_letter.'<h4>';
+                echo '<h4 id="'.$first_letter.'">'.$first_letter.'</h4>';
             }else{
                 $id = '';
             }
                 
         ?>
             <li class="small"><a href="serie.php?idserie=<?=$serie['idserie']?>&filter=<?=$filter?>">
-                <?= utf8_encode(substr($serie['serietitre'], 0, 30)) ?>
+                <?= utf8_encode(substr($serie['serietitre'], 0, 25)) ?>
                 </a><font color="gray">- [<?=$serie['COUNT(*)']?>]</font></li>
         <?php 
         }
@@ -166,8 +168,11 @@ function insert_list(){?>
                     <div class="col-md-8" id="rightAlbum<?=$album['num']?>">
                         <?php 
                             $tome_prefix = '';
-                            if ($album['num'] != "" && strpos('TOME', strtoupper(utf8_encode($album['titre'])) == FALSE)){
-                                $tome_prefix = 'T'.$album['num'].' ';
+                            if ($album['num'] != ""){
+                                //there is a number check that it does not contains
+                                if(strpos(strtoupper($album['titre']), 'TOME') === FALSE){
+                                    $tome_prefix = 'T'.$album['num'].' ';
+                                }
                             }
                             ?>
                         <strong class="text-info"><?=$tome_prefix?><?=utf8_encode($album['titre'])?>
