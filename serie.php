@@ -164,8 +164,13 @@ function insert_list(){?>
                     <!-- Use 8 column span, because the righ slider takes some little space.
                     let it 1 cell wide space available-->
                     <div class="col-md-8" id="rightAlbum<?=$album['num']?>">
-                        
-                        <strong class="text-info">T<?=$album['num']?> <?=utf8_encode($album['titre'])?>
+                        <?php 
+                            $tome_prefix = '';
+                            if ($album['num'] != "" && strpos('TOME', strtoupper(utf8_encode($album['titre'])) == FALSE)){
+                                $tome_prefix = 'T'.$album['num'].' ';
+                            }
+                            ?>
+                        <strong class="text-info"><?=$tome_prefix?><?=utf8_encode($album['titre'])?>
                        
                         </strong><br/>
                         <span class="label label-info"   ><span class="glyphicon glyphicon-modal-window"></span>
