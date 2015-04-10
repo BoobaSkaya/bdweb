@@ -30,12 +30,12 @@ function insert_next_albums() {
 
 
 function insert_mini_album($data){
-    echo '<div class="col-md-2">'
-        .'<div class="thumbnail">'
+    global $IMG_ROOT; // retrieve IMG_ROOT as global variable
+    echo '<div class="col-md-2" style="padding-bottom: 10px; ">'
         . '<a href="serie.php?idserie=' . $data['idserie'] . '">'
         . '<img class="zoomable" src="'.get_thumbnail("Couvertures", $data['couverture']). '" alt="' . $data['titre'] . '">'
+        . '<img class="zoomed"   src="'.$IMG_ROOT.'/Couvertures/'.$data['couverture'].'" alt="' . $data['titre'] . '">'
         .'</a>'
-        .'</div>'
         .'</div>';
 }
 
