@@ -100,4 +100,11 @@ function get_thumbnail($folder, $image){
     return $w_filename;
 }
 
+function get_gravatar_url($email){
+    $default = "http://www.somewhere.com/homestar.jpg";
+    $size = 150;
+    $grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+    return $grav_url;
+}
+
 ?>

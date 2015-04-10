@@ -49,6 +49,9 @@ require_once "_tools.php";
                         <li>
                             <a href="date.php">Par date</a>
                         </li>
+                        <li>
+                            <a href="contact.php"><span class="glyphicon glyphicon-envelope"></span>  contact</a>
+                        </li>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
                               <input type="text" class="form-control" placeholder="Album/Auteur/Serie">
