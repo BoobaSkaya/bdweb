@@ -1,6 +1,8 @@
 <?php
 require_once "_tools.php";
+include_once "analyticstracking.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
