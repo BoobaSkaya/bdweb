@@ -21,7 +21,6 @@ function insert_next_albums() {
     $album = new Album();
     $albums = $album->get_next_albums();
     echo '<div class="row">';
-    // 
     foreach ($albums as $data) {
         insert_mini_album($data);
     }
@@ -29,12 +28,13 @@ function insert_next_albums() {
 }
 
 
+
 function insert_mini_album($data){
     global $IMG_ROOT; // retrieve IMG_ROOT as global variable
     echo '<div class="col-md-2" style="padding-bottom: 10px; ">'
         . '<a href="serie.php?idserie=' . $data['idserie'] . '">'
-        . '<img class="zoomable" src="'.get_thumbnail("Couvertures", $data['couverture']). '" alt="' . $data['titre'] . '">'
-        . '<img class="zoomed"   src="'.$IMG_ROOT.'/Couvertures/'.$data['couverture'].'" alt="' . $data['titre'] . '">'
+        . '<img class="zoomable" src="'.get_thumbnail("Couvertures", $data['couverture']). '" alt="' . utf8_encode($data['titre']) . '">'
+        . '<img class="zoomed"   src="'.$IMG_ROOT.'/Couvertures/'.$data['couverture'].'"      alt="' . utf8_encode($data['titre']) . '">'
         .'</a>'
         .'</div>';
 }
@@ -54,8 +54,8 @@ function insert_serie($idserie, $idalbum) {
     if($data['planche'] == ''){
         echo '<img class="img-thumbnail" src="'.$IMG_ROOT.'/Planches/Encours.jpg" alt="Image en cours"/>';
     }else{
-        echo '<img class="img-thumbnail zoomable" src="'.get_thumbnail("Planches", $data['planche']). '" alt="' . $data['titre'] . '">';
-        echo '<img class="zoomed" src="'.$IMG_ROOT.'/Planches/'.$data['planche']. '" alt="' . $data['titre'] . '">';
+        echo '<img class="img-thumbnail zoomable" src="'.get_thumbnail("Planches", $data['planche']). '" alt="' . utf8_encode($data['titre']) . '">';
+        echo '<img class="zoomed" src="'.$IMG_ROOT.'/Planches/'.$data['planche']                    . '" alt="' . utf8_encode($data['titre']) . '">';
     }
     echo  '</a>'
         . '</div>';
