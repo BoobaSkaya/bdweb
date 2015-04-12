@@ -60,8 +60,11 @@ function insert_serie($idserie, $idalbum) {
     echo  '</a>'
         . '</div>';
     echo '<div class="col-md-9" id="rightSerie">'
-        . '<strong class="text-info">'.utf8_encode($data['titre']).'</strong><br/>'
-        . '<span class="label label-default">'.utf8_encode($data['style']).'</span><br/>';
+        . '<strong class="text-info">'.utf8_encode($data['titre']).'</strong><br/>';
+        
+    echo '<p><small>'.utf8_encode($data['commentaire']).'</small></p>';
+    echo ' <div >'
+        . '<span class="label label-default">'.utf8_encode($data['style']).'</span> ';
     if ($data['encours'] == 0) {
         echo '<span class="label label-info"   ><span class="glyphicon glyphicon-check"></span>  Série terminée</span><br/>';
     } else if ($data['encours'] == 1){
@@ -69,8 +72,9 @@ function insert_serie($idserie, $idalbum) {
     }else if ($data['encours'] == 2){
         echo '<span class="label label-info"   ><span class="glyphicon glyphicon-check"></span>  ONE-SHOT</span><br/>';
     }
-    echo '<small>'.utf8_encode($data['commentaire']).'</small>';
+    echo '</div>'; // bullets for style and encours
     echo '</div>';
+    
     echo '</div>';
 }
 
