@@ -6,7 +6,7 @@
         <h4 class="media-heading">Sandra G</h4>
         <address>
           <strong>Mediathèque Masta</strong><br>
-          <span class="glyphicon glyphicon-envelope"></span>  sandra.giacomin@ceastriumtoulouse.fr<br>
+           <a href="mailto:sandra.giacomin@ceastriumtoulouse.fr"><span class="glyphicon glyphicon-envelope"></span>  sandra.giacomin@ceastriumtoulouse.fr</a><br>
           <p>Déésse supérieure, voies impénétrables de la sélection d'oeuvres.</p>
         </address>
       </div>
