@@ -92,7 +92,11 @@ function get_thumbnail($folder, $image){
     if (!file_exists($w_filename)) { 
         $width = 107;
         $height = 145;
-        $im = imagecreatefromjpeg("$IMG_ROOT/$folder/$image");
+        if(strpos(strtoupper($image), '.GIF') != FALSE){
+            $im = imagecreatefromgif("$IMG_ROOT/$folder/$image");
+        }else{
+            $im = imagecreatefromjpeg("$IMG_ROOT/$folder/$image");
+        }
         if (function_exists('imagecreatetruecolor')) {
             $dst_img = imagecreatetruecolor($width, $height);
         } else {
