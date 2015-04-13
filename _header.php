@@ -54,12 +54,12 @@ include_once "analyticstracking.php";
                         <li>
                             <a href="contact.php"><span class="glyphicon glyphicon-envelope"></span>  contact</a>
                         </li>
-                        <form class="navbar-form navbar-left" role="search">
+                        <!--<form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
                               <input type="text" class="form-control" placeholder="Album/Auteur/Serie">
                             </div>
                             <button type="submit" class="btn btn-default">Chercher</button>
-                        </form>
+                        </form>-->
                     </ul>
                 </nav>
                 
