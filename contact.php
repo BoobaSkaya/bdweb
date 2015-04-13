@@ -23,7 +23,7 @@
         <h4 class="media-heading">Yvan LB</h4>
         <address>
           <strong>BD Masta</strong><br>
-          <span class="glyphicon glyphicon-envelope"></span>  notknown@unknown.com<br>
+          <a href="mailto:ce.palays@free.fr"><span class="glyphicon glyphicon-envelope"></span>  ce.palays@free.fr</a><br>
           <p>Idée du site, gestion contenu BDs, idées loufoques.</p>
         </address>
       </div>
