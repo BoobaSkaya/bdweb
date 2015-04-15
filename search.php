@@ -27,7 +27,7 @@
             <a href="serie.php?idserie=<?=$album['idserie']?>"><?=utf8_encode($album['serietitre'])?></a> 
             <?php if($album['num']>0){ echo '-T'.utf8_encode($album['num']).''; }?>
         </td>
-        <td><?=utf8_encode($album['titre'])?></td>
+        <td><a href="serie.php?idserie=<?=$album['idserie']?>"><?=utf8_encode($album['titre'])?></a></td>
         <td><?=utf8_encode($album['prenomscen'])?> <?=utf8_encode($album['nomscen'])?></td>
         <td><?=utf8_encode($album['prenomdess'])?> <?=utf8_encode($album['nomdess'])?></td>
       </tr>
