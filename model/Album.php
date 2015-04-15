@@ -50,6 +50,28 @@ class Album extends Model
        return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function search_albums($query){
+        $sth = $this->db->prepare(
+                " SELECT distinct a.idserie, s.titre AS serietitre, a.dateachat, a.idalbum, a.couverture, a.num, a.titre"
+               ." , scen.nom as nomscen, scen.prenom as prenomscen" 
+               ." , dess.nom as nomdess, dess.prenom as prenomdess" 
+               ." FROM albums a"
+               ." INNER JOIN (series s, auteurs scen, auteurs dess) "
+               ." ON s.idserie = a.idserie AND scen.idauteur = a.idscenariste AND dess.idauteur = a.iddessinateur "
+               ." WHERE "
+               ."    s.titre LIKE :query_value"
+               ." OR a.titre LIKE :query_value"
+               ." OR dess.nom  LIKE :query_value"
+               ." ORDER BY s.titre, a.idserie, a.num"
+               ." LIMIT 100"
+               );       
+        
+       $real_query = "%".$query."%";
+       $sth->bindParam("query_value", $real_query);
+       $sth->execute();
+       return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function get_pages_nb($fromDate, $toDate){
         $sth = $this->db->prepare("SELECT count(*)"
                ." FROM albums a, series s"
